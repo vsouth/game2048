@@ -1,3 +1,5 @@
+package main.java.ru.vsouth;
+
 public class TestClass {
     public static void main(String[] args) {
         Board board = new SquareBoard(4);

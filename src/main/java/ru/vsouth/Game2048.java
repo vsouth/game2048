@@ -1,9 +1,11 @@
+package main.java.ru.vsouth;
+
 import java.util.Random;
 
 public class Game2048 implements Game{
-    GameHelper helper = new GameHelper();
-    Board board;
-    Random random = new Random();
+    private GameHelper helper = new GameHelper();
+    private Board board;
+    private Random random = new Random();
 
     public Game2048(Board board) {
         this.board = board;

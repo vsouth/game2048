@@ -1,3 +1,5 @@
+package main.java.ru.vsouth;
+
 public interface Game {
     void init();
     boolean canMove();

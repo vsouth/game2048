@@ -1,3 +1,5 @@
+package main.java.ru.vsouth;
+
 import java.util.List;
 
 public class GameHelper {

@@ -1,12 +1,14 @@
+package main.java.ru.vsouth;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public abstract class Board {
-    int width;
-    int height;
-    Map<Key, Integer> board = new HashMap<>();
-    public Board(int width, int height) {
+    private int width;
+    private int height;
+    protected Map<Key, Integer> board = new HashMap<>();
+    Board(int width, int height) {
         this.width = width;
         this.height = height;
     }
