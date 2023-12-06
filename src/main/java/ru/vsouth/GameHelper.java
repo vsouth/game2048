@@ -3,27 +3,26 @@ package main.java.ru.vsouth;
 import java.util.List;
 
 public class GameHelper {
+
     public List<Integer> moveAndMergeEqual(List<Integer> list) {
-        var firstPointerIndex = 0;
-        var secondPointerIndex = 1;
-        while (secondPointerIndex < list.size()) {
-            var firstPointerValue = list.get(firstPointerIndex);
-            var secondPointerValue = list.get(secondPointerIndex);
-            if (firstPointerIndex == secondPointerIndex) {
-                secondPointerIndex++;
-            } else if (secondPointerValue == null) {
-                secondPointerIndex++;
-            } else if (firstPointerValue == null) {
-                list.set(firstPointerIndex, secondPointerValue);
-                list.set(secondPointerIndex, null);
-            } else if (firstPointerValue.equals(secondPointerValue)) {
-                list.set(firstPointerIndex, firstPointerValue * 2);
-                list.set(secondPointerIndex, null);
-                firstPointerIndex++;
+        var leftPointerIndex = 0;
+        var rightPointerIndex = 1;
+        while (rightPointerIndex < list.size()) {
+            var leftPointerValue = list.get(leftPointerIndex);
+            var rightPointerValue = list.get(rightPointerIndex);
+            if ((leftPointerIndex == rightPointerIndex) || (rightPointerValue == null)) {
+                rightPointerIndex++;
+            } else if (leftPointerValue == null) {
+                list.set(leftPointerIndex, rightPointerValue);
+                list.set(rightPointerIndex, null);
+            } else if (leftPointerValue.equals(rightPointerValue)) {
+                list.set(leftPointerIndex, leftPointerValue * 2);
+                list.set(rightPointerIndex, null);
+                leftPointerIndex++;
             } else {
-                firstPointerIndex++;
+                leftPointerIndex++;
             }
         }
-    return list;
+        return list;
     }
 }
