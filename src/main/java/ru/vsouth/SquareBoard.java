@@ -11,10 +11,10 @@ public class SquareBoard extends Board{
 
     @Override
     void fillBoard(List<Integer> list) {
-        Iterator<Integer> list_it = list.listIterator();
+        Iterator<Integer> listIt = list.listIterator();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                Integer value = list_it.next();
+                Integer value = listIt.next();
                 Key key = new Key(i, j);
                 addItem(key, value);
             }
@@ -24,9 +24,9 @@ public class SquareBoard extends Board{
     @Override
     List<Key> availableSpace() {
         var availableSpace = new ArrayList<Key>();
-        var key_it = board.entrySet().iterator();
-        while (key_it.hasNext()) {
-            var pair = key_it.next();
+        var keyIt = board.entrySet().iterator();
+        while (keyIt.hasNext()) {
+            var pair = keyIt.next();
             if (pair.getValue() == null) {
                 availableSpace.add(pair.getKey());
             }
@@ -47,9 +47,9 @@ public class SquareBoard extends Board{
          */
         var key = new Key(i,j);
         var keys = board.keySet();
-        for (Key i_key : keys) {
-            if (key.equals(i_key)) {
-                return i_key;
+        for (Key existingKey : keys) {
+            if (key.equals(existingKey)) {
+                return existingKey;
             }
         }
         return null;
