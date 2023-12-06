@@ -1,7 +1,7 @@
 package main.java.ru.vsouth;
 import java.util.*;
 
-public class SquareBoard extends Board{
+public class SquareBoard<V> extends Board<Key, V>{
     private int size;
 
     SquareBoard(int size) {
@@ -10,11 +10,11 @@ public class SquareBoard extends Board{
     }
 
     @Override
-    void fillBoard(List<Integer> list) {
-        Iterator<Integer> listIt = list.listIterator();
+    void fillBoard(List<V> list) {
+        Iterator<V> listIt = list.listIterator();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                Integer value = listIt.next();
+                V value = listIt.next();
                 Key key = new Key(i, j);
                 addItem(key, value);
             }
@@ -35,7 +35,7 @@ public class SquareBoard extends Board{
     }
 
     @Override
-    void addItem(Key key, Integer value) {
+    void addItem(Key key, V value) {
         board.put(key, value);
     }
 
@@ -56,7 +56,7 @@ public class SquareBoard extends Board{
     }
 
     @Override
-    Integer getValue(Key key) {
+    V getValue(Key key) {
         return board.get(key);
     }
 
@@ -79,13 +79,13 @@ public class SquareBoard extends Board{
     }
 
     @Override
-    boolean hasValue(Integer value) {
+    boolean hasValue(V value) {
         return board.containsValue(value);
     }
 
     @Override
-    List<Integer> getValues(List<Key> keys) {
-        List<Integer> values = new ArrayList<>();
+    List<V> getValues(List<Key> keys) {
+        List<V> values = new ArrayList<>();
         for (Key key : keys) {
             values.add(getValue(key));
         }
