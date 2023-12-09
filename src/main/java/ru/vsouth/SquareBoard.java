@@ -2,10 +2,11 @@ package main.java.ru.vsouth;
 import java.util.*;
 
 public class SquareBoard<V> extends Board<Key, V>{
-    private int size;
+    private final int size;
 
     SquareBoard(int size) {
         super(size, size);
+        this.board.clear();
         this.size = size;
     }
 
@@ -14,9 +15,11 @@ public class SquareBoard<V> extends Board<Key, V>{
         Iterator<V> listIt = list.listIterator();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                V value = listIt.next();
-                Key key = new Key(i, j);
-                addItem(key, value);
+                if (listIt.hasNext()) {
+                    V value = listIt.next();
+                    Key key = new Key(i, j);
+                    addItem(key, value);
+                }
             }
         }
     }
@@ -24,9 +27,7 @@ public class SquareBoard<V> extends Board<Key, V>{
     @Override
     List<Key> availableSpace() {
         var availableSpace = new ArrayList<Key>();
-        var keyIt = board.entrySet().iterator();
-        while (keyIt.hasNext()) {
-            var pair = keyIt.next();
+        for (Map.Entry<Key, V> pair : board.entrySet()) {
             if (pair.getValue() == null) {
                 availableSpace.add(pair.getKey());
             }
@@ -41,10 +42,6 @@ public class SquareBoard<V> extends Board<Key, V>{
 
     @Override
     Key getKey(int i, int j) {
-        /*
-        var key = new main.java.ru.vsouth.Key(i,j);
-        return board.containsKey(key) ? key : null;
-         */
         var key = new Key(i,j);
         var keys = board.keySet();
         for (Key existingKey : keys) {
@@ -93,6 +90,17 @@ public class SquareBoard<V> extends Board<Key, V>{
     }
     @Override
     public String toString() {
+        StringBuilder str = new StringBuilder();
+        for (var i = 0; i < size; i++) {
+            for (var value : getValues(getRow(i))) {
+                str.append(value != null ? value : ".").append("\t");
+            }
+            str.append("\n");
+        }
+        return str.toString();
+    }
+
+    public String toStringStructure() {
         StringBuilder str = new StringBuilder();
         for (Key key : board.keySet()) {
             str.append("key: ").append(key.toString()).append(" value: ").append(board.get(key)).append("\n");
