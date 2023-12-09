@@ -1,11 +1,11 @@
-package main.java.ru.vsouth;
+package main.java.ru.vsouth.util;
 
 import java.util.Objects;
 
 public class Key {
     private int i;
     private int j;
-    Key(int i, int j) {
+    public Key(int i, int j) {
         this.i = i;
         this.j = j;
     }

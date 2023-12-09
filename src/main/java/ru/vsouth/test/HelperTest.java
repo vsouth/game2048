@@ -1,4 +1,6 @@
-package main.java.ru.vsouth;
+package main.java.ru.vsouth.test;
+
+import main.java.ru.vsouth.util.GameHelper;
 
 import java.util.List;
 

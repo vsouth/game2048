@@ -1,4 +1,4 @@
-package main.java.ru.vsouth;
+package main.java.ru.vsouth.util;
 
 import java.util.List;
 

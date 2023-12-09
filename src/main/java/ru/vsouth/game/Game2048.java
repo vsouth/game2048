@@ -1,4 +1,10 @@
-package main.java.ru.vsouth;
+package main.java.ru.vsouth.game;
+
+import main.java.ru.vsouth.board.Board;
+import main.java.ru.vsouth.board.SquareBoard;
+import main.java.ru.vsouth.util.Direction;
+import main.java.ru.vsouth.util.GameHelper;
+import main.java.ru.vsouth.util.Key;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,7 +12,7 @@ import java.util.List;
 import java.util.Random;
 
 
-public class Game2048 implements Game{
+public class Game2048 implements Game {
 
     public static final int GAME_SIZE = 4;
     private Board<Key, Integer> board = new SquareBoard<>(GAME_SIZE);

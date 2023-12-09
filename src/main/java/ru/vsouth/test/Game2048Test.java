@@ -1,4 +1,11 @@
-package main.java.ru.vsouth;
+package main.java.ru.vsouth.test;
+
+import main.java.ru.vsouth.board.Board;
+import main.java.ru.vsouth.board.SquareBoard;
+import main.java.ru.vsouth.game.Game;
+import main.java.ru.vsouth.game.Game2048;
+import main.java.ru.vsouth.util.Direction;
+import main.java.ru.vsouth.util.Key;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,4 +1,7 @@
-package main.java.ru.vsouth;
+package main.java.ru.vsouth.game;
+
+import main.java.ru.vsouth.util.Direction;
+import main.java.ru.vsouth.board.Board;
 
 public interface Game {
     void init();
