@@ -1,8 +1,8 @@
-package main.java.ru.vsouth.test;
+package ru.vsouth.test;
 
-import main.java.ru.vsouth.board.Board;
-import main.java.ru.vsouth.board.SquareBoard;
-import main.java.ru.vsouth.util.Key;
+import ru.vsouth.board.Board;
+import ru.vsouth.board.SquareBoard;
+import ru.vsouth.util.Key;
 
 import java.util.List;
 

@@ -1,23 +1,21 @@
-package main.java.ru.vsouth.game;
+package ru.vsouth.game;
 
-import main.java.ru.vsouth.board.Board;
-import main.java.ru.vsouth.board.SquareBoard;
-import main.java.ru.vsouth.util.Direction;
-import main.java.ru.vsouth.util.GameHelper;
-import main.java.ru.vsouth.util.Key;
+import ru.vsouth.board.Board;
+import ru.vsouth.board.SquareBoard;
+import ru.vsouth.exception.NotEnoughSpace;
+import ru.vsouth.util.Direction;
+import ru.vsouth.util.GameHelper;
+import ru.vsouth.util.Key;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 
 public class Game2048 implements Game {
 
     public static final int GAME_SIZE = 4;
-    private Board<Key, Integer> board = new SquareBoard<>(GAME_SIZE);
-    private GameHelper helper = new GameHelper();
-    private Random random = new Random();
+    private final Board<Key, Integer> board = new SquareBoard<>(GAME_SIZE);
+    private final GameHelper helper = new GameHelper();
+    private final Random random = new Random();
 
 
     @Override
@@ -27,21 +25,39 @@ public class Game2048 implements Game {
             nullList.add(null);
         }
         board.fillBoard(nullList);
-        addItem();
-        addItem();
+        try {
+            addItem();
+            addItem();
+        } catch (NotEnoughSpace e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     @Override
     public boolean canMove() {
-        return !board.availableSpace().isEmpty();
-        // Добавить проверку на наличие повторяющихся элементов
+        if (board.availableSpace().isEmpty()) {
+            for (var i = 0; i < GAME_SIZE; i++) {
+                var row = board.getValues(board.getRow(i));
+                var column = board.getValues(board.getColumn(i));
+                for (var j = 1; j < GAME_SIZE; j++) {
+                    if (row.get(j-1).equals(row.get(j)) || column.get(j-1).equals(column.get(j))) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        return true;
     }
+
 
     @Override
     public boolean move(Direction direction) {
         if (!canMove()) {
             return false;
         }
+        String state = board.toString();
         switch (direction) {
             case UP:
                 for (int i = 0; i < GAME_SIZE; i++) {
@@ -70,7 +86,13 @@ public class Game2048 implements Game {
                 }
                 break;
         }
-        addItem();
+        try {
+            if (!Objects.equals(state, board.toString())) {
+                addItem();
+            }
+        } catch (NotEnoughSpace e) {
+            System.out.println(e.getMessage());
+        }
         return true;
     }
     private void makeShift(List<Key> keys) {
@@ -80,17 +102,19 @@ public class Game2048 implements Game {
         }
     }
     @Override
-    public void addItem() {
+    public void addItem() throws NotEnoughSpace {
         var availableSpace = board.availableSpace();
-        if (!availableSpace.isEmpty()) {
-            var target = random.nextInt(availableSpace.size()-1);
-            var item = (random.nextInt(10) < 8) ? 2 : 4;
-            board.addItem(availableSpace.get(target), item);
+        if (availableSpace.isEmpty()) {
+            throw new NotEnoughSpace("No available space on the board");
         }
+
+        var target = random.nextInt(availableSpace.size());
+        var item = (random.nextInt(10) < 8) ? 2 : 4;
+        board.addItem(availableSpace.get(target), item);
     }
 
     @Override
-    public Board getGameBoard() {
+    public Board<Key, Integer> getGameBoard() {
         return board;
     }
 

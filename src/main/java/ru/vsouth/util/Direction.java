@@ -1,4 +1,4 @@
-package main.java.ru.vsouth.util;
+package ru.vsouth.util;
 
 public enum Direction {
     RIGHT,

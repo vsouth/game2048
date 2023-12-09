@@ -1,7 +1,7 @@
-package main.java.ru.vsouth.test;
+package ru.vsouth.test;
 
-import main.java.ru.vsouth.game.Game;
-import main.java.ru.vsouth.game.Game2048;
+import ru.vsouth.game.Game;
+import ru.vsouth.game.Game2048;
 
 public class TestClass {
     public static void main(String[] args) {
@@ -9,6 +9,7 @@ public class TestClass {
         game2048.init();
         System.out.println(game2048.getGameBoard());
         System.out.println(game2048.canMove());
+        System.out.println();
     }
 }
 

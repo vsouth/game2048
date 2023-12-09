@@ -1,4 +1,4 @@
-package main.java.ru.vsouth.board;
+package ru.vsouth.board;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,13 +1,14 @@
-package main.java.ru.vsouth.game;
+package ru.vsouth.game;
 
-import main.java.ru.vsouth.util.Direction;
-import main.java.ru.vsouth.board.Board;
+import ru.vsouth.exception.NotEnoughSpace;
+import ru.vsouth.util.Direction;
+import ru.vsouth.board.Board;
 
 public interface Game {
     void init();
     boolean canMove();
     boolean move(Direction direction);
-    void addItem();
+    void addItem() throws NotEnoughSpace;
     Board getGameBoard();
     boolean hasWin();
 }

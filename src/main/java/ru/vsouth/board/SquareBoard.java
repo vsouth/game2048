@@ -1,5 +1,5 @@
-package main.java.ru.vsouth.board;
-import main.java.ru.vsouth.util.Key;
+package ru.vsouth.board;
+import ru.vsouth.util.Key;
 
 import java.util.*;
 

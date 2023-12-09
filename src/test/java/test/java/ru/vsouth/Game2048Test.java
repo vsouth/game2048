@@ -1,9 +1,9 @@
-package ru.vsouth.test;
+package test.java.ru.vsouth;
+import org.junit.jupiter.api.Test;
 
 import ru.vsouth.board.Board;
 import ru.vsouth.board.SquareBoard;
 import ru.vsouth.exception.NotEnoughSpace;
-import ru.vsouth.game.Game;
 import ru.vsouth.game.Game2048;
 import ru.vsouth.util.Direction;
 import ru.vsouth.util.Key;
@@ -11,11 +11,11 @@ import ru.vsouth.util.Key;
 import java.util.Arrays;
 import java.util.List;
 
-
 public class Game2048Test {
-    private final static Game game = new Game2048();
 
-    public static void main(String[] args) throws NotEnoughSpace {
+    @Test
+    void gameTest() throws NotEnoughSpace {
+        var game = new Game2048();
         Board<Key, String> b2 = new SquareBoard<>(1);
         b2.fillBoard(Arrays.asList("hello"));
         if (!"hello".equals(b2.getValue(b2.getKey(0 ,0)))) throw new RuntimeException("board not work =(");
@@ -54,5 +54,5 @@ public class Game2048Test {
     private static void assertLists(List<?> l1, List<?> l2) {
         if (!(l1.size() == l2.size() && l1.containsAll(l2) && l2.containsAll(l1))) throw new RuntimeException("l1: " + l1 + " not equals l2: " + l2);
     }
-}
 
+}
