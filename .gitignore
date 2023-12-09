@@ -1,9 +1,6 @@
-# Default ignored files
-/shelf/
-/.idea/workspace.xml
 ### IntelliJ IDEA ###
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 .idea/
-game_of_life.iml
+*.iml
