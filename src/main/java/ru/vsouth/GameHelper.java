@@ -5,22 +5,22 @@ import java.util.List;
 public class GameHelper {
 
     public List<Integer> moveAndMergeEqual(List<Integer> list) {
-        var leftPointerIndex = 0;
-        var rightPointerIndex = 1;
-        while (rightPointerIndex < list.size()) {
-            var leftPointerValue = list.get(leftPointerIndex);
-            var rightPointerValue = list.get(rightPointerIndex);
-            if ((leftPointerIndex == rightPointerIndex) || (rightPointerValue == null)) {
-                rightPointerIndex++;
-            } else if (leftPointerValue == null) {
-                list.set(leftPointerIndex, rightPointerValue);
-                list.set(rightPointerIndex, null);
-            } else if (leftPointerValue.equals(rightPointerValue)) {
-                list.set(leftPointerIndex, leftPointerValue * 2);
-                list.set(rightPointerIndex, null);
-                leftPointerIndex++;
+        var leftIndex = 0;
+        var rightIndex = 1;
+        while (rightIndex < list.size()) {
+            var leftValue = list.get(leftIndex);
+            var rightValue = list.get(rightIndex);
+            if ((leftIndex == rightIndex) || (rightValue == null)) {
+                rightIndex++;
+            } else if (leftValue == null) {
+                list.set(leftIndex, rightValue);
+                list.set(rightIndex, null);
+            } else if (leftValue.equals(rightValue)) {
+                list.set(leftIndex, leftValue * 2);
+                list.set(rightIndex, null);
+                leftIndex++;
             } else {
-                leftPointerIndex++;
+                leftIndex++;
             }
         }
         return list;
