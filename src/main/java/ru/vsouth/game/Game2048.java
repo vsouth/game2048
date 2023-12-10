@@ -57,7 +57,7 @@ public class Game2048 implements Game {
         if (!canMove()) {
             return false;
         }
-        String state = board.toString();
+        int hash = board.hashCode();
         switch (direction) {
             case UP:
                 for (int i = 0; i < GAME_SIZE; i++) {
@@ -87,11 +87,11 @@ public class Game2048 implements Game {
                 break;
         }
         try {
-            if (!Objects.equals(state, board.toString())) {
+            if (hash != board.hashCode()) {
                 addItem();
             }
         } catch (NotEnoughSpace e) {
-            System.out.println(e.getMessage());
+            return false;
         }
         return true;
     }

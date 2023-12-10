@@ -90,8 +90,8 @@ public class SquareBoard<V> extends Board<Key, V> {
         }
         return values;
     }
-    @Override
-    public String toString() {
+
+    public String print() {
         StringBuilder str = new StringBuilder();
         for (var i = 0; i < size; i++) {
             for (var value : getValues(getRow(i))) {
@@ -102,11 +102,17 @@ public class SquareBoard<V> extends Board<Key, V> {
         return str.toString();
     }
 
-    public String toStringStructure() {
+    @Override
+    public String toString() {
         StringBuilder str = new StringBuilder();
         for (Key key : board.keySet()) {
-            str.append("key: ").append(key.toString()).append(" value: ").append(board.get(key)).append("\n");
+            str.append(key.toString()).append(board.get(key));
         }
         return str.toString();
+    }
+
+    public int hashCode() {
+        var structure = board.toString();
+        return structure.hashCode();
     }
 }
